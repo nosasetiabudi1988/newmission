@@ -1,17 +1,10 @@
-
 import { GoogleGenAI } from "@google/genai";
-
-const getApiKey = (): string => {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-        throw new Error("API_KEY environment variable not set.");
-    }
-    return apiKey;
-};
 
 export const getMissionTip = async (objective: string): Promise<string> => {
   try {
-    const ai = new GoogleGenAI({ apiKey: getApiKey() });
+    // FIX: Aligned API key handling with coding guidelines by using `process.env.API_KEY` directly.
+    // This removes the custom `getApiKey` function and resolves the TypeScript error related to `import.meta.env`.
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const prompt = `
         You are an AI assistant for "Mission: Possible", a secret agent-themed English learning app for junior high students. 
@@ -40,4 +33,3 @@ export const getMissionTip = async (objective: string): Promise<string> => {
     return "HQ to Agent, our comms are scrambled. We couldn't get a tip through. Rely on your training. Over.";
   }
 };
-   
