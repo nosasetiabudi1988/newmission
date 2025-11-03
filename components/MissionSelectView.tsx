@@ -54,7 +54,15 @@ const MissionSelectView: React.FC<MissionSelectViewProps> = ({ missionCategories
         title: newMissionTitle,
         objective: 'New mission objective.',
         briefing: 'New mission briefing.',
-        steps: [{id: 's1', description: 'First step.'}],
+        // FIX: The 'Mission' type has a 'stages' property, not 'steps'.
+        // Provided a default WritingStage to create a valid new mission.
+        stages: [{
+          id: `s${Date.now()}`,
+          type: 'writing',
+          title: 'New Writing Stage',
+          imagePrompt: 'A placeholder image prompt.',
+          prompt: 'A placeholder prompt for the writing stage.'
+        }],
         points: 100,
         status: 'pending'
       };
@@ -101,4 +109,3 @@ const MissionSelectView: React.FC<MissionSelectViewProps> = ({ missionCategories
 };
 
 export default MissionSelectView;
-   
